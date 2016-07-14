@@ -7,6 +7,6 @@ target 'PKSwiftSocket_Example' do
   target 'PKSwiftSocket_Tests' do
     inherit! :search_paths
 
-    
+
   end
 end
