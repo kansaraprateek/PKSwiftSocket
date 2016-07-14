@@ -11,6 +11,9 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
+* iOS 8.0+ 
+* Xcode 7.3.1+
+
 ## Installation
 
 PKSwiftSocket is available through [CocoaPods](http://cocoapods.org). To install
@@ -20,6 +23,31 @@ it, simply add the following line to your Podfile:
 pod "PKSwiftSocket"
 ```
 
+##Usage
+
+```ruby
+
+    // Initialize Socket object
+    let pksocketobj : PKSocket = PKSocket(lAddress : address, lPort : port)
+
+    // Handle connection with blocks
+    pksocketobj.handleConnection({
+
+    }, data: {
+        (Data : String) in
+        // Handle response data
+            print("Response data : \(Data)")
+        }, Error: {
+            (errorString : String) in
+            // Error when connection to address
+            print("Error : \(errorString)")
+    })
+
+    /**
+    Send data to address
+    */
+    pksocketobj.sendDataToStream("")
+```
 ## Author
 
 Prateek Kansara, prateek@tagrem.com

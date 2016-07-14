@@ -1,18 +1,18 @@
 {
   "name": "PKSwiftSocket",
   "version": "0.1.0",
-  "summary": "A short description of PKSwiftSocket.",
+  "summary": "Socket connection with block methods as well as delegate option in Swift",
   "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/PKSwiftSocket",
+  "homepage": "https://github.com/kansaraprateek/PKSwiftSocket",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "Prateek Kansara": "prateek@tagrem.com"
+    "Prateek Kansara": "prateek@kansara.in"
   },
   "source": {
-    "git": "https://github.com/<GITHUB_USERNAME>/PKSwiftSocket.git",
+    "git": "https://github.com/kansaraprateek/PKSwiftSocket.git",
     "tag": "0.1.0"
   },
   "platforms": {

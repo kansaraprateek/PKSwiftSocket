@@ -10,12 +10,35 @@ import UIKit
 import PKSwiftSocket
 
 class ViewController: UIViewController {
+    
+    let address = ""
+    let port = 10
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        var socketObject : PKSocket = PKSocket()
+        let pksocketobj : PKSocket = PKSocket(lAddress : address, lPort : port)
+        
+        pksocketobj.handleConnection({
+            
+            }, data: {
+                (Data : String) in
+                // Handle response data
+                print("Response data : \(Data)")
+                
+                
+            }, Error: {
+                (errorString : String) in
+                // Error when connection to address
+                print("Error : \(errorString)")
+                
+        })
+        
+        /**
+         Send data to address
+         */
+        pksocketobj.sendDataToStream("")
         
     }
 

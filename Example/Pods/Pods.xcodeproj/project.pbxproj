@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AE89004FD084635BC68EA5B2F5C1472 /* PKSwiftSocket-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA9A20BA7EDFBED8D4E2562D71D0CF9 /* PKSwiftSocket-dummy.m */; };
 		20D4C5BAE554A4E8B474C02837DF31A0 /* Pods-PKSwiftSocket_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 211E3BDD958FB80000DF1A91348A0D45 /* Pods-PKSwiftSocket_Tests-dummy.m */; };
 		2A1DE614CA96845BE99326BC067BD991 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 		31964287C28B1927C9E57EB080EAD9BC /* Pods-PKSwiftSocket_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D8B1B7430411DFF1E7E52C9A0729EFBD /* Pods-PKSwiftSocket_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		33FC3D5378C9E4274D43ADF352299C42 /* PKSwiftSocket-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA9A20BA7EDFBED8D4E2562D71D0CF9 /* PKSwiftSocket-dummy.m */; };
 		769802498BF5948DD32613368D0309BC /* Pods-PKSwiftSocket_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 89139D0256A9CBCB5F9C7A77C496BBFD /* Pods-PKSwiftSocket_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		951F5B5B74CD58446339EF25EE057906 /* PKSwiftSocket-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4265CE4CC3259AA162BD98055DA02750 /* PKSwiftSocket-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B69C62B0DCED9C7F0A9BF7A2B250D97B /* PKSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB26337DE0512C2EEB86D5900E1F325 /* PKSocket.swift */; };
 		D557F20471088FB5D0DD804C1DB48656 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 		E01D5AC72A2586D93779141A7CEBE30A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		FAD3ECD81D377D390042E242 /* PKSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3ECD71D377D390042E242 /* PKSocket.swift */; };
 		FD33BC4728A889190EA1FF77F7F9F54B /* Pods-PKSwiftSocket_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6563AF2F0F723A235630BAB9A1F2AF /* Pods-PKSwiftSocket_Example-dummy.m */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +35,7 @@
 		15CE6EBB4FD47D527693493B1C36527C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FE1187433D7E510842D22BB47C5D90D /* PKSwiftSocket.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PKSwiftSocket.xcconfig; sourceTree = "<group>"; };
 		211E3BDD958FB80000DF1A91348A0D45 /* Pods-PKSwiftSocket_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PKSwiftSocket_Tests-dummy.m"; sourceTree = "<group>"; };
+		2BB26337DE0512C2EEB86D5900E1F325 /* PKSocket.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PKSocket.swift; sourceTree = "<group>"; };
 		3D6563AF2F0F723A235630BAB9A1F2AF /* Pods-PKSwiftSocket_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PKSwiftSocket_Example-dummy.m"; sourceTree = "<group>"; };
 		3F40557BBC9CD7A6138B0A1580940DC4 /* Pods_PKSwiftSocket_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PKSwiftSocket_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4265CE4CC3259AA162BD98055DA02750 /* PKSwiftSocket-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PKSwiftSocket-umbrella.h"; sourceTree = "<group>"; };
@@ -61,7 +62,6 @@
 		D8B1B7430411DFF1E7E52C9A0729EFBD /* Pods-PKSwiftSocket_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PKSwiftSocket_Tests-umbrella.h"; sourceTree = "<group>"; };
 		DB4EEB651CFB459A18C927B58084852E /* Pods-PKSwiftSocket_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PKSwiftSocket_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		E639A059E0E6C4F68D38CAB4A79C7E27 /* Pods-PKSwiftSocket_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PKSwiftSocket_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		FAD3ECD71D377D390042E242 /* PKSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKSocket.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,14 +92,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1271476FE0186751ADA4FD4FC29F8DE1 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				FAD3ECD71D377D390042E242 /* PKSocket.swift */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		18ED1EBC22310F3C0690FC2C476D2ACD /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,9 +153,17 @@
 		67C350911AA8CEC2C9AE23A3ABD008D7 /* PKSwiftSocket */ = {
 			isa = PBXGroup;
 			children = (
-				1271476FE0186751ADA4FD4FC29F8DE1 /* Classes */,
+				68B7439D12866AA7035A1EE5E0545BBB /* Classes */,
 			);
 			path = PKSwiftSocket;
+			sourceTree = "<group>";
+		};
+		68B7439D12866AA7035A1EE5E0545BBB /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2BB26337DE0512C2EEB86D5900E1F325 /* PKSocket.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -274,7 +274,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 795C9D0ABBBA082BF73C3EB5E3FE1D78 /* Build configuration list for PBXNativeTarget "PKSwiftSocket" */;
 			buildPhases = (
-				47C8EC7DCD3903A5542F54C449D30809 /* Sources */,
+				5303352D217227DF4DB8660D88418581 /* Sources */,
 				B0B8683E73D16F6744CD829DB800DC2B /* Frameworks */,
 				C740A72082AE3555B8B57AC93831542B /* Headers */,
 			);
@@ -333,12 +333,12 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		47C8EC7DCD3903A5542F54C449D30809 /* Sources */ = {
+		5303352D217227DF4DB8660D88418581 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33FC3D5378C9E4274D43ADF352299C42 /* PKSwiftSocket-dummy.m in Sources */,
-				FAD3ECD81D377D390042E242 /* PKSocket.swift in Sources */,
+				B69C62B0DCED9C7F0A9BF7A2B250D97B /* PKSocket.swift in Sources */,
+				0AE89004FD084635BC68EA5B2F5C1472 /* PKSwiftSocket-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

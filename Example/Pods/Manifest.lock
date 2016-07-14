@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  PKSwiftSocket: dea18e7ada409a365d8fbaac113186bd1e1ba563
+  PKSwiftSocket: 281f75a8f9f66d09b517bb0f560e2e16ba6a974f
 
 PODFILE CHECKSUM: 1bddcf785f056fdc25e5b54cace8a19ea3681012
 
