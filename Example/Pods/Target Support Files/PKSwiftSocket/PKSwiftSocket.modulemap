@@ -1,0 +1,6 @@
+framework module PKSwiftSocket {
+  umbrella header "PKSwiftSocket-umbrella.h"
+
+  export *
+  module * { export * }
+}

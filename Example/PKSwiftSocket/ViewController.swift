@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import PKSwiftSocket
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        var socketObject : PKSocket = PKSocket()
+        
     }
 
     override func didReceiveMemoryWarning() {

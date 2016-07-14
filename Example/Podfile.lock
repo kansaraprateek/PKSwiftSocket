@@ -1,0 +1,16 @@
+PODS:
+  - PKSwiftSocket (0.1.0)
+
+DEPENDENCIES:
+  - PKSwiftSocket (from `../`)
+
+EXTERNAL SOURCES:
+  PKSwiftSocket:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  PKSwiftSocket: dea18e7ada409a365d8fbaac113186bd1e1ba563
+
+PODFILE CHECKSUM: 1bddcf785f056fdc25e5b54cace8a19ea3681012
+
+COCOAPODS: 1.0.0
