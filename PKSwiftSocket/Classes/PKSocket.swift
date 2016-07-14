@@ -8,13 +8,6 @@
 
 import Foundation
 
-/// Constants
-private let addressRequiredError = "Address required"
-private let portNumberError = "Port number required"
-private let streamError = "Stream Error"
-private let streamEnded = "Stream Ended"
-private let undefinedError = "Stream Undefined error"
-
 /**
  *  Stream delegate method to handle event
  */
@@ -25,7 +18,7 @@ private let undefinedError = "Stream Undefined error"
 
 /// Socket class
 
-class PKSocket : NSObject {
+public class PKSocket : NSObject {
     
     var address : String!
     var port : Int!
@@ -159,7 +152,7 @@ class PKSocket : NSObject {
 
 extension PKSocket : NSStreamDelegate{
     
-    func stream(aStream: NSStream, handleEvent eventCode: NSStreamEvent) {
+    public func stream(aStream: NSStream, handleEvent eventCode: NSStreamEvent) {
         
         let lBufferSize = bufferSize
         var buffer = Array<UInt8>(count: lBufferSize, repeatedValue: 0)
@@ -207,3 +200,10 @@ extension PKSocket : NSStreamDelegate{
     }
     
 }
+
+/// Constants
+private let addressRequiredError = "Address required"
+private let portNumberError = "Port number required"
+private let streamError = "Stream Error"
+private let streamEnded = "Stream Ended"
+private let undefinedError = "Stream Undefined error"
