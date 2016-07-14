@@ -11,7 +11,7 @@ import Foundation
 /**
  *  Stream delegate method to handle event
  */
-@objc protocol PKStreamDelegate : NSObjectProtocol {
+public protocol PKStreamDelegate : NSObjectProtocol {
     
     func PKStream(aStream: NSStream, eventCode: NSStreamEvent)
 }
@@ -20,10 +20,10 @@ import Foundation
 
 public class PKSocket : NSObject {
     
-    var address : String!
-    var port : Int!
+    public var address : String!
+    public var port : Int!
     
-    var delegate: PKStreamDelegate?
+    public var delegate: PKStreamDelegate?
     
     private var bufferSize = 10240
     
@@ -47,7 +47,7 @@ public class PKSocket : NSObject {
      
      - returns: PKObject type
      */
-    convenience init(lAddress : String, lPort : Int) {
+    public convenience init(lAddress : String, lPort : Int) {
         self.init()
         address = lAddress
         port = lPort
@@ -76,14 +76,14 @@ public class PKSocket : NSObject {
      
      - parameter lBufferSize: Int type size
      */
-    func setBufferSize (lBufferSize : Int){
+    public func setBufferSize (lBufferSize : Int){
         bufferSize = lBufferSize
     }
     
     /**
      Open Stream connection
      */
-    func openConnection() {
+    public func openConnection() {
         
         if inputStream == nil {
             initializeStreams()
@@ -101,7 +101,7 @@ public class PKSocket : NSObject {
      
      - returns: Bool type variable
      */
-    func isStreamOpened() -> Bool{
+    public func isStreamOpened() -> Bool{
         return streamOpened
     }
     
@@ -112,7 +112,7 @@ public class PKSocket : NSObject {
      - parameter data:              On recieving data from address (returns server data as a String value)
      - parameter Error:             on Error connection to stream or stream ends enexpectedly (returns error with connection as a String value)
      */
-    func handleConnection(connectionSuccess : ()->Void, data : (Data : String) -> Void, Error : (errorString : String)->Void){
+    public func handleConnection(connectionSuccess : ()->Void, data : (Data : String) -> Void, Error : (errorString : String)->Void){
         
         onConnection = connectionSuccess
         onRecievingData = data
@@ -134,7 +134,7 @@ public class PKSocket : NSObject {
      
      - parameter dataToSend: String variable to send to Ip or address
      */
-    func sendDataToStream(dataToSend : String){
+    public func sendDataToStream(dataToSend : String){
         let encodedDataArray = [UInt8](dataToSend.utf8)
         outputStream?.write(encodedDataArray, maxLength: encodedDataArray.count)
     }
@@ -142,7 +142,7 @@ public class PKSocket : NSObject {
     /**
      Closes currently activated streams
      */
-    func closeConnection(){
+    public func closeConnection(){
         inputStream?.close()
         outputStream?.close()
     }
