@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PKSwiftSocket'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'Socket connection with block methods as well as delegate option in Swift'
 
 # This description is used to generate tags and improve search results.

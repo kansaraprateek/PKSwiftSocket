@@ -13,7 +13,7 @@ import Foundation
  */
 public protocol PKStreamDelegate : NSObjectProtocol {
     
-    func PKStream(aStream: NSStream, eventCode: NSStreamEvent)
+    func PKStream(_ aStream: Stream, eventCode: Stream.Event)
 }
 
 /// Socket class
@@ -25,15 +25,13 @@ public class PKSocket : NSObject {
     
     public var delegate: PKStreamDelegate?
     
-    private var bufferSize = 10240
+    fileprivate var bufferSize = 10240
     
-    private var streamOpened : Bool = false
+    fileprivate var streamOpened : Bool = false
     
-    private var onConnection : (() -> Void)?
+    fileprivate var onConnection : ((_ data : String?) -> Void)?
     
-    private var onRecievingData : ((data : String)-> Void)?
-    
-    private var OnError : ((errorString : String)->Void)?
+    fileprivate var OnError : ((_ errorString : String)->Void)?
     
     override init() {
         //        super.init()
@@ -55,17 +53,17 @@ public class PKSocket : NSObject {
         initializeStreams()
     }
     
-    private var inputStream : NSInputStream?
-    private var outputStream : NSOutputStream?
+    fileprivate var inputStream : InputStream?
+    fileprivate var outputStream : OutputStream?
     
     /**
      Initializes Input and output Streams with IP and port
      
      - returns: Returns stream objects
      */
-    private func initializeStreams()  {
-        
-        NSStream.getStreamsToHostWithName(address, port: port, inputStream: &inputStream, outputStream: &outputStream)
+    fileprivate func initializeStreams()  {
+
+        Stream.getStreamsToHost(withName: address!, port: port!, inputStream: &inputStream, outputStream: &outputStream)
         
         inputStream?.delegate = self
         outputStream?.delegate = self
@@ -76,7 +74,7 @@ public class PKSocket : NSObject {
      
      - parameter lBufferSize: Int type size
      */
-    public func setBufferSize (lBufferSize : Int){
+    public func setBufferSize (_ lBufferSize : Int){
         bufferSize = lBufferSize
     }
     
@@ -89,8 +87,8 @@ public class PKSocket : NSObject {
             initializeStreams()
         }
         
-        inputStream?.scheduleInRunLoop(NSRunLoop.currentRunLoop(), forMode: NSDefaultRunLoopMode)
-        outputStream?.scheduleInRunLoop(NSRunLoop.currentRunLoop(), forMode: NSDefaultRunLoopMode)
+        inputStream?.schedule(in: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
+        outputStream?.schedule(in: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
         
         inputStream?.open()
         outputStream?.open()
@@ -112,29 +110,33 @@ public class PKSocket : NSObject {
      - parameter data:              On recieving data from address (returns server data as a String value)
      - parameter Error:             on Error connection to stream or stream ends enexpectedly (returns error with connection as a String value)
      */
-    public func handleConnection(connectionSuccess : ()->Void, data : (Data : String) -> Void, Error : (errorString : String)->Void){
+    public func handleConnection(_ connectionSuccess : @escaping (_ data : String?)->Void, Error : @escaping (_ errorString : String)->Void){
         
         onConnection = connectionSuccess
-        onRecievingData = data
         OnError = Error
         
         if address == nil {
-            OnError!(errorString: addressRequiredError)
+            OnError!(addressRequiredError)
         }
         
         if port == nil {
-            OnError!(errorString: portNumberError)
+            OnError!(portNumberError)
         }
         
         openConnection()
     }
-    
+   
+    fileprivate var dataSent : String? = nil
     /**
      Send date to output stream
      
      - parameter dataToSend: String variable to send to Ip or address
      */
-    public func sendDataToStream(dataToSend : String){
+    public func sendDataToStream(_ dataToSend : String){
+        if !outputStream!.hasSpaceAvailable{
+           outputStream?.open()
+        }
+        dataSent = dataToSend
         let encodedDataArray = [UInt8](dataToSend.utf8)
         outputStream?.write(encodedDataArray, maxLength: encodedDataArray.count)
     }
@@ -146,55 +148,65 @@ public class PKSocket : NSObject {
         inputStream?.close()
         outputStream?.close()
     }
+    
+    fileprivate var serverDataRecieved : String? = nil
 }
 
 // MARK: - Delegate method fot stream
 
-extension PKSocket : NSStreamDelegate{
+extension PKSocket : StreamDelegate{
     
-    public func stream(aStream: NSStream, handleEvent eventCode: NSStreamEvent) {
+    public func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
         
         let lBufferSize = bufferSize
-        var buffer = Array<UInt8>(count: lBufferSize, repeatedValue: 0)
+        var buffer = Array<UInt8>(repeating: 0, count: lBufferSize)
         var len : Int!
         
         switch (eventCode) {
-            
-        case NSStreamEvent.OpenCompleted:
-            onConnection!()
-            streamOpened = true
+        
+        case Stream.Event.openCompleted:
+            self.streamOpened = true
             break
-        case NSStreamEvent.HasBytesAvailable:
-            if aStream == inputStream {
-                
+        case Stream.Event.hasBytesAvailable:
+                       if aStream == inputStream {
                 while ((inputStream?.hasBytesAvailable) != nil) {
                     
                     len = (inputStream?.read(&buffer, maxLength: bufferSize))!
                     
                     if len > 0 {
-                        let serverData = NSString.init(bytes: buffer, length: len, encoding: NSASCIIStringEncoding)!
+                        
+                        let serverData = NSString.init(bytes: buffer, length: len, encoding: String.Encoding.ascii.rawValue)!
                         if serverData.length > 0 {
-                            onRecievingData!(data : serverData as String)
+                            serverDataRecieved = serverData as String
+                            onConnection!(serverData as String)
+                        }
+                        else{
+                            serverDataRecieved = "No Data Recieved"
+                            onConnection!(serverDataRecieved)
                         }
                     }
                     break
                 }
             }
+            dataSent = nil
+
             break
-        case NSStreamEvent.HasSpaceAvailable :
-            //            print("Stream has space available")
+        case Stream.Event.hasSpaceAvailable :
+            if dataSent == nil{
+                onConnection!(serverDataRecieved)
+            }
             break
-        case NSStreamEvent.ErrorOccurred :
+        case Stream.Event.errorOccurred :
             aStream.close()
             closeConnection()
-            OnError!(errorString: streamError)
+            OnError!(streamError)
             break
-        case NSStreamEvent.EndEncountered :
-            aStream.removeFromRunLoop(NSRunLoop.currentRunLoop(), forMode: NSDefaultRunLoopMode)
-            OnError!(errorString: streamEnded)
+        case Stream.Event.endEncountered :
+            aStream.remove(from: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
+            OnError!(streamEnded)
             break
         default :
-            OnError!(errorString: undefinedError)
+            OnError!(undefinedError)
             break
         }
     }

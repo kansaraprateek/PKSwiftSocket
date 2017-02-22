@@ -33,8 +33,7 @@ pod "PKSwiftSocket"
     // Handle connection with blocks
     pksocketobj.handleConnection({
 
-    }, data: {
-        (Data : String) in
+        (Data : String?) in
         // Handle response data
             print("Response data : \(Data)")
         }, Error: {
